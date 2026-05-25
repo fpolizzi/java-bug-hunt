@@ -2,8 +2,8 @@ package com.amigoscode.bughunt.easy.bug09;
 
 public class TemperatureTracker {
 
-    private int min = 0;
-    private int max = 0;
+    private int min = Integer.MAX_VALUE;
+    private int max = Integer.MIN_VALUE;
 
     public void record(int temperature) {
         if (temperature < min) {
