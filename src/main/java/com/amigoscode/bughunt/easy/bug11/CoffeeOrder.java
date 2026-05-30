@@ -23,6 +23,7 @@ public class CoffeeOrder {
                 break;
             case "L":
                 price = 3.50;
+                break;
             case "XL":
                 price = 4.50;
                 break;
