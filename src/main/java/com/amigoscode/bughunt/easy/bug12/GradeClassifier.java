@@ -9,13 +9,13 @@ public class GradeClassifier {
         if (score < MIN_SCORE || score > MAX_SCORE) {
             throw new IllegalArgumentException("Score out of range: " + score);
         }
-        if (score > 90) {
+        if (score >= 90) {
             return 'A';
-        } else if (score > 80) {
+        } else if (score >= 80) {
             return 'B';
-        } else if (score > 70) {
+        } else if (score >= 70) {
             return 'C';
-        } else if (score > 60) {
+        } else if (score >= 60) {
             return 'D';
         } else {
             return 'F';
