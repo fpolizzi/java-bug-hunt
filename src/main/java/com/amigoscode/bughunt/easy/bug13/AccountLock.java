@@ -19,7 +19,7 @@ public class AccountLock {
     }
 
     public boolean attemptAccess(String user, String providedToken) {
-        if (locked = true) {
+        if (locked) {
             failedAttempts++;
             return false;
         }
