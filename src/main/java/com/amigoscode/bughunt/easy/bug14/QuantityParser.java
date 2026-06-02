@@ -15,7 +15,8 @@ public class QuantityParser {
         try {
             return Integer.parseInt(raw.trim());
         } catch (NumberFormatException e) {
-            // ignore — fall through to default
+            errorCount++;
+            invalidInputs.add(raw);
         }
         return fallback;
     }
