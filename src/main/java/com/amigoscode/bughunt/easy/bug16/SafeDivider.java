@@ -3,7 +3,7 @@ package com.amigoscode.bughunt.easy.bug16;
 public class SafeDivider {
 
     public boolean canDivide(Integer numerator, Integer divisor) {
-        return numerator != null & divisor != null & divisor != 0;
+        return numerator != null && divisor != null && divisor != 0;
     }
 
     public int divide(Integer numerator, Integer divisor) {
