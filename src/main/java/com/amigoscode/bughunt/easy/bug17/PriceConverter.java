@@ -9,8 +9,8 @@ public class PriceConverter {
         this.currencySymbol = currencySymbol;
     }
 
-    public int toCents(double dollars) {
-        return (int) dollars * CENTS_PER_DOLLAR;
+    public double toCents(double dollars) {
+        return dollars * CENTS_PER_DOLLAR;
     }
 
     public double fromCents(int cents) {
