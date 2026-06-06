@@ -29,7 +29,7 @@ public class AverageRater {
         if (ratings.isEmpty()) {
             return 0;
         }
-        return (int) Math.round(totalScore / ratings.size());
+        return (int) Math.round((double) totalScore / ratings.size());
     }
 
     public String summary() {
