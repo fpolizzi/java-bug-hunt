@@ -10,7 +10,7 @@ public class IpValidator {
         if (ip == null || ip.isBlank()) {
             throw new IllegalArgumentException("IP must not be blank");
         }
-        String[] parts = ip.split(".");
+        String[] parts = ip.split("\\.");
         if (parts.length != EXPECTED_OCTETS) {
             throw new IllegalArgumentException("Expected 4 octets, got " + parts.length);
         }
