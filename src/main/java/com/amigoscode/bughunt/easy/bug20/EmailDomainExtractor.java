@@ -5,6 +5,9 @@ public class EmailDomainExtractor {
     public String domain(String email) {
         validateNotBlank(email);
         int at = email.indexOf('@');
+        if (at < 0) {
+            throw new IllegalArgumentException("Email missing '@': " + email);
+        }
         return email.substring(at + 1).toLowerCase();
     }
 
