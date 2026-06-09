@@ -26,7 +26,7 @@ public class Inventory {
         if (a == null || b == null) {
             return false;
         }
-        return a == b;
+        return a.equals(b);
     }
 
     public String summary() {
