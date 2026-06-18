@@ -17,7 +17,7 @@ public class TaskQueue {
     }
 
     public void cancel(int taskId) {
-        taskIds.remove(taskId);
+        taskIds.remove(Integer.valueOf(taskId));
     }
 
     public int size() {
