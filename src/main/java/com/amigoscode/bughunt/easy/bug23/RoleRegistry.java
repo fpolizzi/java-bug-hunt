@@ -1,5 +1,6 @@
 package com.amigoscode.bughunt.easy.bug23;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class RoleRegistry {
 
     public RoleRegistry(String owner, String... defaults) {
         this.owner = owner;
-        this.roles = Arrays.asList(defaults);
+        this.roles = new ArrayList<>(Arrays.asList(defaults));
     }
 
     public void addRole(String role) {
