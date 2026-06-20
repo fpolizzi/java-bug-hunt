@@ -17,11 +17,8 @@ public class ShoppingCart {
     }
 
     public void removeAllContaining(String substring) {
-        for (String item : items) {
-            if (item.toLowerCase().contains(substring.toLowerCase())) {
-                items.remove(item);
-            }
-        }
+        items.removeIf(item ->
+                item.toLowerCase().contains(substring.toLowerCase()));
     }
 
     public int size() {
