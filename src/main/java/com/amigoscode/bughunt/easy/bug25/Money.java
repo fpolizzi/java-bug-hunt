@@ -30,12 +30,11 @@ public class Money {
         return new Money(cents + other.cents, currency);
     }
 
-    public boolean equals(Money other) {
-        if (other == null) {
-            return false;
-        }
-        return this.cents == other.cents
-                && Objects.equals(this.currency, other.currency);
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Money money = (Money) o;
+        return cents == money.cents && Objects.equals(currency, money.currency);
     }
 
     @Override
