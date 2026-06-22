@@ -20,7 +20,7 @@ public class Leaderboard {
 
     public List<Entry> topN(int n) {
         List<Entry> sorted = new ArrayList<>(entries);
-        sorted.sort((a, b) -> a.score() - b.score());
+        sorted.sort((a, b) -> b.score() - a.score());
         return sorted.stream().limit(n).toList();
     }
 
