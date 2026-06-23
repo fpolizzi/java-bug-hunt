@@ -22,7 +22,7 @@ public class UserDirectory {
         return findById(id)
                 .map(User::name)
                 .map(String::toUpperCase)
-                .get();
+                .orElse("UNKNOWN");
     }
 
     public String emailDomain(long id) {
