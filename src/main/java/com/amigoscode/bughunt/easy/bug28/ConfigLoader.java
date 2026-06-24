@@ -21,7 +21,7 @@ public class ConfigLoader {
                 props.load(reader);
             }
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Failed to load " + target, e);
         }
         return props;
     }
