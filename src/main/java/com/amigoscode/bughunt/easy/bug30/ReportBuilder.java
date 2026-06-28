@@ -1,8 +1,6 @@
 package com.amigoscode.bughunt.easy.bug30;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ReportBuilder {
 
@@ -13,13 +11,14 @@ public class ReportBuilder {
     }
 
     public String build(List<String> entries) {
-        Stream<String> pipeline = entries.stream()
+        List<String> filtered = entries.stream()
                 .filter(e -> e != null)
                 .filter(e -> !e.isBlank())
-                .map(String::trim);
+                .map(String::trim)
+                .toList();
 
-        long count = pipeline.count();
-        String joined = pipeline.collect(Collectors.joining(", "));
+        long count = filtered.size();
+        String joined = String.join(", ", filtered);
 
         return reportName + " [" + count + "]: " + joined;
     }
