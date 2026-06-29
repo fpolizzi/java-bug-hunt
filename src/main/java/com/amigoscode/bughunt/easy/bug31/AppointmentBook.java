@@ -12,8 +12,8 @@ public class AppointmentBook {
         private final int durationMinutes;
 
         public Appointment(String subject, Date start, int durationMinutes) {
+            this.start = new Date(start.getTime());
             this.subject = subject;
-            this.start = start;
             this.durationMinutes = durationMinutes;
         }
 
@@ -22,7 +22,7 @@ public class AppointmentBook {
         }
 
         public Date start() {
-            return start;
+            return new Date(start.getTime());
         }
 
         public int durationMinutes() {
