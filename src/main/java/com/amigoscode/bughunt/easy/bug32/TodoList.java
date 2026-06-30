@@ -27,16 +27,14 @@ public class TodoList {
             this.done = true;
         }
 
-        @Override
-        public boolean equals(Object o) {
+        @Override public boolean equals(Object o) {
             if (this == o) return true;
             if (!(o instanceof Item other)) return false;
-            return done == other.done && Objects.equals(title, other.title);
+            return Objects.equals(title, other.title);
         }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(title, done);
+        @Override public int hashCode() {
+            return Objects.hash(title);
         }
     }
 
