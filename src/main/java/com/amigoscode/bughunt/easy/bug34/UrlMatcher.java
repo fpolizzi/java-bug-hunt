@@ -4,11 +4,11 @@ import java.util.regex.Pattern;
 
 public class UrlMatcher {
 
-    private static final String PROTOCOL_REGEX = "https?://";
+    private static final String URL_REGEX = "https?://\\S+";
     private final Pattern pattern;
 
     public UrlMatcher() {
-        this.pattern = Pattern.compile(PROTOCOL_REGEX);
+        this.pattern = Pattern.compile(URL_REGEX);
     }
 
     public boolean isValidUrl(String candidate) {
