@@ -1,5 +1,6 @@
 package com.amigoscode.bughunt.easy.bug35;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -13,7 +14,7 @@ public class Playlist {
 
     public Playlist(String name, List<Track> tracks) {
         this.name = name;
-        this.tracks = tracks;
+        this.tracks = new ArrayList<>(tracks);
     }
 
     public void sortByDuration() {
