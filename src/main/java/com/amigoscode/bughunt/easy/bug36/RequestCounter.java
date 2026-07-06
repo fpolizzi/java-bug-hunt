@@ -2,7 +2,7 @@ package com.amigoscode.bughunt.easy.bug36;
 
 public class RequestCounter {
 
-    private static int count = 0;
+    private int count = 0;
     private final String endpoint;
 
     public RequestCounter(String endpoint) {
