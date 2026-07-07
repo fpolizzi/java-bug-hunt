@@ -1,5 +1,6 @@
 package com.amigoscode.bughunt.easy.bug37;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfile {
@@ -10,7 +11,7 @@ public class UserProfile {
 
     public UserProfile(String username, List<String> tags) {
         this.username = username;
-        this.tags = tags;
+        this.tags = new ArrayList<>(tags);
         this.reputation = 0;
     }
 
