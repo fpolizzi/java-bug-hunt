@@ -12,7 +12,7 @@ public class NumberParser {
         if (input == null) {
             return defaultValue;
         }
-        return Integer.parseInt(input);
+        return Integer.parseInt(input.trim());
     }
 
     public int parseOrDefault(String input) {
