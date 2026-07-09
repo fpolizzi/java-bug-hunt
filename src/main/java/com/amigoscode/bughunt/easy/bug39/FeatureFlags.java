@@ -21,7 +21,7 @@ public class FeatureFlags {
     }
 
     public boolean isEnabled(String flag) {
-        return flags.get(flag);
+        return flags.getOrDefault(flag, false);
     }
 
     public boolean isEnabledOrDefault(String flag, boolean fallback) {
