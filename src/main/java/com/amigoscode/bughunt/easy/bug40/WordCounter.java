@@ -22,7 +22,8 @@ public class WordCounter {
             String clean = w.replaceAll("[^a-z]", "");
             if (clean.isEmpty()) continue;
             Integer current = counts.get(clean);
-            counts.put(clean, current + 1);
+            counts.put(clean, current == null ? 1 : current + 1);
+
         }
     }
 
