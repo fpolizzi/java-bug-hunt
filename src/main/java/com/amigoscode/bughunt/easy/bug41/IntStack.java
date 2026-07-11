@@ -21,14 +21,14 @@ public class IntStack {
         if (data.isEmpty()) {
             throw new NoSuchElementException("Stack is empty: " + label);
         }
-        return data.remove(0);
+        return data.remove(data.size() - 1);
     }
 
     public int peek() {
         if (data.isEmpty()) {
             throw new NoSuchElementException("Stack is empty: " + label);
         }
-        return data.get(0);
+        return data.get(data.size() - 1);
     }
 
     public int size() {
