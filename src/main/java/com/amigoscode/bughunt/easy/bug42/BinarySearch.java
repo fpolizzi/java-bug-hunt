@@ -12,7 +12,7 @@ public class BinarySearch {
     public int indexOf(int target) {
         int low = 0;
         int high = sorted.length - 1;
-        while (low < high) {
+        while (low <= high) {
             int mid = low + (high - low) / 2;
             int value = sorted[mid];
             if (value == target) {
