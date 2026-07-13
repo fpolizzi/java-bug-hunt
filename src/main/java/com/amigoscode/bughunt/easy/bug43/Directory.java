@@ -39,7 +39,7 @@ public class Directory {
         for (Directory sub : subdirs) {
             max = Math.max(max, sub.depth());
         }
-        return max;
+        return max + 1;
     }
 
     public String name() {
