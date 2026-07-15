@@ -9,8 +9,13 @@ public class Power {
         if (exponent == 0) {
             return 1L;
         }
+
+        if (exponent == 0) return 1L;
+
         long half = power(base, exponent / 2);
-        return half * half;
+        long squared = half * half;
+
+        return (exponent % 2 == 0) ? squared : squared * base;
     }
 
     public long powerIterative(long base, int exponent) {
