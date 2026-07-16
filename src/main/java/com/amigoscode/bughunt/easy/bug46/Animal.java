@@ -5,9 +5,9 @@ public class Animal {
     private final String sound;
     private final String species;
 
-    public Animal(String species) {
+    public Animal(String species, String sound) {
         this.species = species;
-        this.sound = computeSound();
+        this.sound = sound;
     }
 
     protected String computeSound() {
@@ -31,7 +31,7 @@ public class Animal {
         private final String breed;
 
         public Dog(String breed) {
-            super("dog");
+            super("dog", breed.toUpperCase() + " bark!");
             this.breed = breed;
         }
 
