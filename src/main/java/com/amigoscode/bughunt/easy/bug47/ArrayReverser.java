@@ -11,7 +11,7 @@ public class ArrayReverser {
     }
 
     public void reverseInPlace(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length / 2; i++) {
             int j = arr.length - 1 - i;
             swap(arr, i, j);
         }
