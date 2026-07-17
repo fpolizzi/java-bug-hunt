@@ -16,7 +16,7 @@ public class AgeRange {
     }
 
     public boolean contains(int age) {
-        return age > minInclusive && age < maxInclusive;
+        return age >= minInclusive && age <= maxInclusive;
     }
 
     public int span() {
