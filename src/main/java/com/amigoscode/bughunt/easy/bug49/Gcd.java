@@ -9,7 +9,7 @@ public class Gcd {
         if (b == 0) {
             return a;
         }
-        return gcd(a, a % b);
+        return gcd(b, a % b);
     }
 
     public int lcm(int a, int b) {
