@@ -33,7 +33,7 @@ public class Fingerprint {
     public boolean matches(Fingerprint other) {
         if (other == null) return false;
         if (!algorithm.equals(other.algorithm)) return false;
-        return bytes == other.bytes;
+        return java.util.Arrays.equals(this.bytes, other.bytes);
     }
 
     @Override
