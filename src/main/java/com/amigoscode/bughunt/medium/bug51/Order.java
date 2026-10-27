@@ -32,7 +32,7 @@ public class Order {
     }
 
     public Order copy(String newOrderId) {
-        return new Order(newOrderId, customer, items);
+        return new Order(newOrderId, customer, new ArrayList<>(items));
     }
 
     public double grandTotal() {
