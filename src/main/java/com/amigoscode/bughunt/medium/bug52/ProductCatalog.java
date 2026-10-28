@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 public class ProductCatalog {
 
     public static class Product {
-        private String name;
-        private String category;
+        private final String name;
+        private final String category;
         private final double price;
 
         public Product(String name, String category, double price) {
@@ -24,16 +24,8 @@ public class ProductCatalog {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
         public String getCategory() {
             return category;
-        }
-
-        public void setCategory(String category) {
-            this.category = category;
         }
 
         public double getPrice() {

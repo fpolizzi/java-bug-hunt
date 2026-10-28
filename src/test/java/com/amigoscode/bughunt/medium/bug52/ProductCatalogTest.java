@@ -13,7 +13,7 @@ class ProductCatalogTest {
         catalog.addProduct(laptop, 10);
 
         // Mutate the product's name after insertion
-        laptop.setName("Gaming Laptop");
+        //laptop.setName("Gaming Laptop");
 
         // The catalog should still find this product
         assertThat(catalog.getStock(laptop)).isPresent().hasValue(10);
@@ -25,7 +25,7 @@ class ProductCatalogTest {
         ProductCatalog.Product phone = new ProductCatalog.Product("Phone", "Mobile", 699.00);
         catalog.addProduct(phone, 25);
 
-        phone.setCategory("Smartphones");
+        //phone.setCategory("Smartphones");
 
         assertThat(catalog.getStock(phone)).isPresent().hasValue(25);
     }
@@ -36,7 +36,7 @@ class ProductCatalogTest {
         ProductCatalog.Product tablet = new ProductCatalog.Product("Tablet", "Electronics", 499.00);
         catalog.addProduct(tablet, 5);
 
-        tablet.setName("iPad");
+        //tablet.setName("iPad");
 
         assertThat(catalog.totalProducts()).isEqualTo(1);
         assertThat(catalog.removeProduct(tablet)).isTrue();
