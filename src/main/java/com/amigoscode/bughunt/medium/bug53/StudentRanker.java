@@ -53,7 +53,10 @@ public class StudentRanker {
     private final TreeSet<Student> rankings;
 
     public StudentRanker() {
-        this.rankings = new TreeSet<>(Comparator.comparingInt(Student::getScore).reversed());
+        this.rankings = new TreeSet<>(
+                Comparator.comparingInt(Student::getScore).reversed()
+                        .thenComparing(Student::getId)
+        );
     }
 
     public void addStudent(Student student) {
