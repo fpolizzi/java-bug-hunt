@@ -54,8 +54,8 @@ public class LogFormatter {
     public String formatEntry(LogEntry entry) {
         String ts = entry.getTimestamp().format(FORMATTER);
         String lvl = entry.getLevel().name();
-        String src = entry.getSource().toString();
-        String msg = entry.getMessage().toString();
+        String src = String.valueOf(entry.getSource());
+        String msg = String.valueOf(entry.getMessage());
         return String.format("[%s] %s %s — %s", ts, lvl, src, msg);
     }
 
