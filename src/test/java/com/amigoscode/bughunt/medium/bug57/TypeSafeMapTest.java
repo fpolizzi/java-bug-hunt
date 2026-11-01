@@ -3,6 +3,7 @@ package com.amigoscode.bughunt.medium.bug57;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TypeSafeMapTest {
 
@@ -19,27 +20,17 @@ class TypeSafeMapTest {
     @Test
     void getWithWrongTypeShouldReturnCorrectType() {
         TypeSafeMap map = new TypeSafeMap();
-        map.put("age", "twenty-five"); // stored as String
+        map.put("age", "42");
 
-        // A truly type-safe get should either throw or return an Integer.
-        // With the bug, it silently returns the String disguised as Integer.
-        Object result = map.get("age", Integer.class);
-
-        // The returned object should actually be an Integer (or a CCE
-        // should have been thrown above). With the bug, it's a String.
-        assertThat(result).isInstanceOf(Integer.class);
+        assertThrows(ClassCastException.class, () -> map.get("age", Integer.class));
     }
 
     @Test
     void getOptionalWithWrongTypeShouldReturnCorrectType() {
         TypeSafeMap map = new TypeSafeMap();
-        map.put("count", "not-a-number");
+        map.put("count", "42");
 
-        // getOptional should enforce the type as well
-        Object result = map.getOptional("count", Integer.class)
-                .orElse(null);
-
-        assertThat(result).isInstanceOf(Integer.class);
+        assertThrows(ClassCastException.class, () -> map.getOptional("count", Integer.class));
     }
 
     @Test

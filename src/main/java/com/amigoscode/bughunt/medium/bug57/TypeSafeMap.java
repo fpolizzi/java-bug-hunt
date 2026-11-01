@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * A map wrapper that stores heterogeneous values keyed by String,
  * with a typed retrieval method that should guarantee type safety.
- *
+ * <p>
  * Use case: configuration stores, attribute maps, deserialized JSON bags.
  */
 public class TypeSafeMap {
@@ -34,29 +34,22 @@ public class TypeSafeMap {
      * Should throw ClassCastException immediately if the stored value
      * is not compatible with the requested type.
      */
-    @SuppressWarnings("unchecked")
+
     public <T> T get(String key, Class<T> type) {
-        Object value = store.get(key);
-        if (value == null) {
-            return null;
-        }
-        // BUG: unchecked cast — ignores the 'type' parameter entirely.
-        // The cast to (T) is erased at runtime, so no ClassCastException
-        // is thrown here. The caller only gets a CCE when they try to
-        // use the returned value as the expected type.
-        return (T) value;
+        return type.cast(store.get(key));
     }
+
+    // BUG: unchecked cast — ignores the 'type' parameter entirely.
+    // The cast to (T) is erased at runtime, so no ClassCastException
+    // is thrown here. The caller only gets a CCE when they try to
+    // use the returned value as the expected type.
 
     /**
      * Returns the value as an Optional of the requested type.
      */
-    @SuppressWarnings("unchecked")
+
     public <T> Optional<T> getOptional(String key, Class<T> type) {
-        Object value = store.get(key);
-        if (value == null) {
-            return Optional.empty();
-        }
-        return Optional.of((T) value);
+        return Optional.ofNullable(get(key, type));
     }
 
     /**
