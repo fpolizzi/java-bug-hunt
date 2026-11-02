@@ -38,6 +38,12 @@ public class QueryBuilder {
     }
 
     public String build() {
+        String sql = buildSql();
+        reset();
+        return sql;
+    }
+
+    private String buildSql() {
         if (selectClause == null || selectClause.isBlank()) {
             throw new IllegalStateException("SELECT clause is required");
         }
@@ -89,7 +95,7 @@ public class QueryBuilder {
 
     public String preview() {
         try {
-            return build();
+            return buildSql();
         } catch (IllegalStateException e) {
             return "<incomplete query: " + e.getMessage() + ">";
         }
