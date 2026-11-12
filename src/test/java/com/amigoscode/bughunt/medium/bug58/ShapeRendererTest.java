@@ -11,9 +11,7 @@ class ShapeRendererTest {
 
     @Test
     void replaceFirstInSubtypeArrayShouldWork() {
-        // Square[] is passed as Shape[] — Java allows this (covariance).
-        // Replacing with a Circle should be fine from a Shape perspective.
-        Shape[] shapes = new Square[]{
+        Shape[] shapes = new Shape[]{
                 new Square("red", 4.0),
                 new Square("blue", 3.0)
         };
@@ -26,7 +24,7 @@ class ShapeRendererTest {
 
     @Test
     void fillAllInSubtypeArrayShouldWork() {
-        Shape[] shapes = new Square[]{
+        Shape[] shapes = new Shape[]{
                 new Square("red", 4.0),
                 new Square("blue", 3.0),
                 new Square("yellow", 2.0)
