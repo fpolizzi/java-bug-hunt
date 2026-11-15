@@ -19,12 +19,11 @@ public class EnvironmentConfig {
         // BUG: "db.host" appears twice — Map.of() throws
         // IllegalArgumentException on duplicate keys.
         this.config = Map.of(
-                "db.host", "localhost",
+                "db.host", environment + ".db.example.com",
                 "db.port", "5432",
                 "db.name", environment + "_db",
                 "db.pool.size", "10",
                 "db.timeout.ms", "5000",
-                "db.host", environment + ".db.example.com",
                 "app.name", "my-service",
                 "app.env", environment
         );
