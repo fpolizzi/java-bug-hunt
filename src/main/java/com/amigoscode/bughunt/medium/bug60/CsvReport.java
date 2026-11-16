@@ -17,13 +17,12 @@ import java.util.List;
  */
 public class CsvReport {
 
-    private final Iterator<String> rows;
+    private final List<String> rows;
 
     public CsvReport(Iterator<String> rows) {
-        if (rows == null) {
-            throw new IllegalArgumentException("rows iterator must not be null");
-        }
-        this.rows = rows;
+        List<String> list = new ArrayList<>();
+        rows.forEachRemaining(list::add);
+        this.rows = List.copyOf(list);
     }
 
     /**
@@ -32,40 +31,27 @@ public class CsvReport {
      * headers() or dataRows() see an exhausted iterator.
      */
     public int rowCount() {
-        int count = 0;
-        while (rows.hasNext()) {
-            rows.next();
-            count++;
-        }
-        return count;
+        return rows.size();
     }
 
     /**
      * Returns the column headers (first row, split by comma).
      */
     public List<String> headers() {
-        if (rows.hasNext()) {
-            String headerLine = rows.next();
-            return List.of(headerLine.split(","));
-        }
-        return List.of();
+        if (rows.isEmpty()) return List.of();
+        return List.of(rows.get(0).split(","));
     }
 
     /**
      * Returns all data rows (everything after the header), each split by comma.
      */
     public List<List<String>> dataRows() {
-        List<List<String>> result = new ArrayList<>();
-        boolean firstSkipped = false;
-        while (rows.hasNext()) {
-            String line = rows.next();
-            if (!firstSkipped) {
-                firstSkipped = true;
-                continue; // skip header
-            }
-            result.add(List.of(line.split(",")));
+        List<List<String>> dataRows = new ArrayList<>();
+        for (int rowIndex = 1; rowIndex < rows.size(); rowIndex++) {
+            String line = rows.get(rowIndex);
+            dataRows.add(List.of(line.split(",")));
         }
-        return result;
+        return dataRows;
     }
 
     /**
