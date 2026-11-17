@@ -14,20 +14,6 @@ public class ResourceManager {
     private final List<String> auditLog = new ArrayList<>();
 
     /**
-     * Functional interface for creating closeable resources.
-     */
-    public interface ResourceFactory {
-        Closeable open() throws IOException;
-    }
-
-    /**
-     * Functional interface representing work performed on a resource.
-     */
-    public interface ResourceWorker {
-        String execute(Closeable resource) throws Exception;
-    }
-
-    /**
      * Opens a resource from the factory, performs work using the worker,
      * and closes the resource afterwards.
      *
@@ -39,15 +25,13 @@ public class ResourceManager {
     public String process(ResourceFactory factory, ResourceWorker worker) throws Exception {
         auditLog.add("OPEN");
         Closeable resource = factory.open();
-
-        String result = worker.execute(resource);
-
-        // BUG: if worker.execute() throws, this line is never reached
-        // and the resource is never closed
-        resource.close();
-        auditLog.add("CLOSE");
-
-        return result;
+        try {
+            String result = worker.execute(resource);
+            return result;
+        } finally {
+            resource.close();
+            auditLog.add("CLOSE");
+        }
     }
 
     /**
@@ -85,5 +69,19 @@ public class ResourceManager {
      */
     public int auditLogSize() {
         return auditLog.size();
+    }
+
+    /**
+     * Functional interface for creating closeable resources.
+     */
+    public interface ResourceFactory {
+        Closeable open() throws IOException;
+    }
+
+    /**
+     * Functional interface representing work performed on a resource.
+     */
+    public interface ResourceWorker {
+        String execute(Closeable resource) throws Exception;
     }
 }
