@@ -33,11 +33,21 @@ public class PaymentProcessor {
             charge(amount);
             transactionLog.add("SUCCESS: " + amount);
             return SUCCESS;
-        } catch (Exception e) {
+
             // BUG: catches all exceptions with a generic error code.
             // IllegalArgumentException (bad input) should return ERROR_INVALID_AMOUNT (-2)
             // InsufficientFundsException should return ERROR_INSUFFICIENT_FUNDS (-3)
             // FraudDetectedException should return ERROR_FRAUD_DETECTED (-4)
+        } catch (IllegalArgumentException e) {
+            transactionLog.add("FAILED: " + amount + " reason=" + e.getMessage());
+            return ERROR_INVALID_AMOUNT;
+        } catch (InsufficientFundsException e) {
+            transactionLog.add("FAILED: " + amount + " reason=" + e.getMessage());
+            return ERROR_INSUFFICIENT_FUNDS;
+        } catch (FraudDetectedException e) {
+            transactionLog.add("FAILED: " + amount + " reason=" + e.getMessage());
+            return ERROR_FRAUD_DETECTED;
+        } catch (Exception e) {
             transactionLog.add("FAILED: " + amount + " reason=" + e.getMessage());
             return ERROR_UNKNOWN;
         }
