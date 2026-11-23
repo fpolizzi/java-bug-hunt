@@ -34,16 +34,26 @@ public class BatchRunner {
         job.initialize();
         executionLog.add("INITIALIZED");
 
+        Exception primaryException = null;
         try {
             String result = job.process();
             executionLog.add("PROCESSED");
             return result;
+        } catch (Exception e) {
+            primaryException = e;
+            throw e;
         } finally {
-            // BUG: If process() threw ProcessingException and cleanup()
-            // throws CleanupException, the ProcessingException is lost.
-            // The caller only sees CleanupException.
-            job.cleanup();
-            executionLog.add("CLEANED_UP");
+            try {
+                job.cleanup();
+                executionLog.add("CLEANED_UP");
+            } catch (Exception cleanupEx) {
+                executionLog.add("CLEANED_UP");
+                if (primaryException != null) {
+                    primaryException.addSuppressed(cleanupEx);
+                } else {
+                    throw cleanupEx;
+                }
+            }
         }
     }
 
