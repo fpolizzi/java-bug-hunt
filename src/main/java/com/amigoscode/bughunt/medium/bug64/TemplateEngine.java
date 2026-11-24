@@ -41,7 +41,7 @@ public class TemplateEngine {
             // "${key}" contains $ and { which are regex metacharacters,
             // causing a PatternSyntaxException.
             // Should use replace() (literal) instead of replaceAll() (regex).
-            result = result.replaceAll("${" + entry.getKey() + "}", entry.getValue());
+            result = result.replace("${" + entry.getKey() + "}", entry.getValue());
         }
 
         return result;
