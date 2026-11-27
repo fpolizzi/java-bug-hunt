@@ -64,12 +64,10 @@ public class FileSorter {
     public List<FileEntry> sortByExtensionThenName(List<FileEntry> files) {
         List<FileEntry> sorted = new ArrayList<>(files);
 
-        Comparator<FileEntry> comparator = Comparator.comparing(FileEntry::getExtension);
-        // BUG: thenComparing returns a NEW Comparator — the result is discarded.
-        // The sort only uses the extension comparator, ignoring name ordering.
-        comparator.thenComparing(FileEntry::getName);
-
+        Comparator<FileEntry> comparator = Comparator.comparing(FileEntry::getExtension)
+                .thenComparing(FileEntry::getName);
         sorted.sort(comparator);
+
         return sorted;
     }
 
